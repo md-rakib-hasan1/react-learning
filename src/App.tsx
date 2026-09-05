@@ -1,6 +1,6 @@
 import Welcome from "./components/Welcome";
 import Profile from "./components/Profile";
-
+import New from "./components/new";
 function App(){
   return (
     <div>
@@ -9,6 +9,7 @@ function App(){
 
       <Welcome />
       <Profile/>
+      <New/>
     </div>
   );
 }

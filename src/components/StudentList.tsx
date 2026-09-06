@@ -1,18 +1,29 @@
-import {useState} from 'react';
+import { useState } from 'react';
 
 const StudentList = () => {
-    const [students, setStudents]=useState<string[]>(["Rakib","Hasan","Rahim"]);
+    const [students, setStudents] = useState<string[]>(["Rakib", "Hasan", "Rahim"]);
+
+    const [studentName, setStudentName] = useState<string>("");
 
     return (
         <div>
             <h2>Student List</h2>
-            {students.map((student)=>(<p key={student}>{student}</p>))}
-            <button onClick={()=>setStudents([...students,"Karim"])}>
-                Add Karim</button>
+            <input
+                type="text"
+                value={studentName}
+                onChange={(e) => setStudentName(e.target.value)}
+            />
 
-        <button onClick={()=>setStudents([...students,"Sumon"])}>Add Sumon</button>
-            
-        </div>
+            <button onClick={() => {
+                // if(studentName.trim()==="") return;
+                setStudents([...students, studentName]);
+                setStudentName("")
+            }}>
+                Add Student</button>
+
+            {students.map((student) => (<p key={student}>{student}</p>))}
+
+        </div >
     );
 };
 

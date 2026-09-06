@@ -3,6 +3,7 @@ import Profile from "./components/Profile";
 import New from "./components/new";
 import Product from "./components/Product";
 import Counter from "./components/Counter";
+import StudentList from "./components/StudentList";
 import { useState } from "react";
 function App() {
   const[name, setName]=useState<string>("Rakib");
@@ -54,6 +55,7 @@ function App() {
     Login/Logout
    </button>
    <Counter/>
+   <StudentList/>
     </div>
   );
 }

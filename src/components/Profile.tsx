@@ -1,12 +1,15 @@
-function Profile(){
-    const Name= 'RAKIB HASAN';
-    const Role='Frontend Developer';
-    const Learning= 'React + TypeScript';
+interface ProfileProps{
+    name:string;
+    role:string;
+    learning:string;
+}
+function Profile({name,role,learning}:ProfileProps){
+    
     return (
         <div>
-            <h1>Name:{Name}</h1>
-            <h2>Role:{Role}</h2>
-            <p>Learning: {Learning}</p>
+            <h1>Name:{name}</h1>
+            <h2>Role:{role}</h2>
+            <p>Learning: {learning}</p>
 
         </div>
     );

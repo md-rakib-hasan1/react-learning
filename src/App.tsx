@@ -7,6 +7,8 @@ import StudentList from "./components/StudentList";
 import { useState } from "react";
 import NewStudentList from "./components/NewStudentList";
 import LoginStatus from "./components/LoginStatus";
+import EventHandling from "./components/EventHandling";
+import Event from "./components/Event";
 function App() {
   const[name, setName]=useState<string>("Rakib");
   const[isLoggedIn, setIsLoggedIn]=useState<boolean>(false);
@@ -60,6 +62,8 @@ function App() {
    <StudentList/>
    <NewStudentList/>
    <LoginStatus/>
+   <EventHandling/>
+   <Event/>
     </div>
   );
 }

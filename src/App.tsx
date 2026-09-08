@@ -5,6 +5,7 @@ import Product from "./components/Product";
 import Counter from "./components/Counter";
 import StudentList from "./components/StudentList";
 import { useState } from "react";
+import NewStudentList from "./components/NewStudentList";
 function App() {
   const[name, setName]=useState<string>("Rakib");
   const[isLoggedIn, setIsLoggedIn]=useState<boolean>(false);
@@ -56,6 +57,7 @@ function App() {
    </button>
    <Counter/>
    <StudentList/>
+   <NewStudentList/>
     </div>
   );
 }

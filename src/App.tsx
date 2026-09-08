@@ -1,11 +1,12 @@
 import Welcome from "./components/Welcome";
 import Profile from "./components/Profile";
-import New from "./components/new";
+import New from "./components/New";
 import Product from "./components/Product";
 import Counter from "./components/Counter";
 import StudentList from "./components/StudentList";
 import { useState } from "react";
 import NewStudentList from "./components/NewStudentList";
+import LoginStatus from "./components/LoginStatus";
 function App() {
   const[name, setName]=useState<string>("Rakib");
   const[isLoggedIn, setIsLoggedIn]=useState<boolean>(false);
@@ -58,6 +59,7 @@ function App() {
    <Counter/>
    <StudentList/>
    <NewStudentList/>
+   <LoginStatus/>
     </div>
   );
 }

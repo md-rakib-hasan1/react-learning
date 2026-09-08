@@ -12,9 +12,21 @@ const StudentForm = () => {
     const [name, setName] = useState<string>("");
     const [age, setAge] = useState<string>("");
     const [department, setDepartment] = useState<string>("");
+    const [error, setError] = useState<string>("");
 
     const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        if (
+            name.trim() === "" ||
+            age.trim() === "" ||
+            department.trim() === ""
+        ) {
+            setError("All fields are required");
+            return;
+        }
+
+        setError("");
 
         const newStudent: Student = {
             name: name,
@@ -55,6 +67,7 @@ const StudentForm = () => {
                 />
                 <button type='submit'>Submit</button>
             </form>
+            {error && <p>{error}</p>}
             {students.map((student, index) => (
                 <div key={index}>
                     <p>Name: {student.name}</p>

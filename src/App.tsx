@@ -9,6 +9,7 @@ import NewStudentList from "./components/NewStudentList";
 import LoginStatus from "./components/LoginStatus";
 import EventHandling from "./components/EventHandling";
 import Event from "./components/Event";
+import StudentForm from "./components/StudentForm";
 function App() {
   const[name, setName]=useState<string>("Rakib");
   const[isLoggedIn, setIsLoggedIn]=useState<boolean>(false);
@@ -64,6 +65,7 @@ function App() {
    <LoginStatus/>
    <EventHandling/>
    <Event/>
+   <StudentForm/>
     </div>
   );
 }

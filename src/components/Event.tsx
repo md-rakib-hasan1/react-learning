@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, type ChangeEvent} from 'react';
 
 const Event = () => {
     const[name, setName]=useState<string>("");
@@ -17,7 +17,7 @@ const handleClick=()=>{
                  id="name"
                  type="text"
                  value={name}
-                 onChange={(e)=>setName(e.target.value)} />
+                 onChange={(e:ChangeEvent<HTMLInputElement>)=>setName(e.target.value)} />
             </div>
             <button onClick={handleClick}>Click</button>
             <p>{message}</p>

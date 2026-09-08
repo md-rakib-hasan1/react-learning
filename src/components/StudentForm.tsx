@@ -38,16 +38,19 @@ const StudentForm = () => {
                 <input
                     type="text"
                     placeholder='Enter name'
+                    value={name}
                     onChange={(e) => setName(e.target.value)}
                 />
                 <input
                     type="number"
                     placeholder='Enter age'
+                    value={age}
                     onChange={(e) => setAge(e.target.value)}
                 />
                 <input
                     type="text"
                     placeholder='Enter department'
+                    value={department}
                     onChange={(e) => setDepartment(e.target.value)}
                 />
                 <button type='submit'>Submit</button>

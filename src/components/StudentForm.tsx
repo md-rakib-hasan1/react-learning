@@ -14,6 +14,7 @@ const StudentForm = () => {
     const [age, setAge] = useState<string>("");
     const [department, setDepartment] = useState<string>("");
     const [error, setError] = useState<string>("");
+    const [editingId, setEditingId] = useState<number | null>(null);
 
     const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -40,23 +41,61 @@ const StudentForm = () => {
 
         setError("");
 
+        if (editingId !== null) {
+            handleUpdate();
+            return;
+        }
+
         const newStudent: Student = {
             id: Date.now(),
             name: name.trim(),
             age: Number(age),
-            department: department,
+            department: department.trim(),
         };
+
         setStudents([...students, newStudent]);
         setName('');
         setAge('');
         setDepartment('');
     };
 
+
     const handleDelete = (id: number) => {
         setStudents(
             students.filter((student) => student.id !== id)
         );
     };
+
+    const handleEdit = (student: Student) => {
+        setEditingId(student.id);
+
+        setName(student.name);
+        setAge(String(student.age));
+        setDepartment(student.department);
+    };
+
+    const handleUpdate = () => {
+        setStudents(
+            students.map((student) =>
+                student.id === editingId
+                    ? {
+                        ...student,
+                        name: name.trim(),
+                        age: Number(age),
+                        department: department.trim(),
+                    }
+                    : student
+            )
+        );
+
+        setEditingId(null);
+
+        setName("");
+        setAge("");
+        setDepartment("");
+    };
+
+
 
 
     return (
@@ -81,15 +120,27 @@ const StudentForm = () => {
                     value={department}
                     onChange={(e) => setDepartment(e.target.value)}
                 />
-                <button type='submit'>Submit</button>
+                <button type='submit'>{editingId === null ? "Submit" : "Update"}</button>
             </form>
             {error && <p>{error}</p>}
 
             {students.map((student) => (
                 <div key={student.id}>
-                    <p>Name: {student.name}</p>
-                    <p>Age: {student.age}</p>
-                    <p>Department: {student.department}</p>
+                    <p>
+                        <strong>Name:</strong> {student.name}
+                    </p>
+
+                    <p>
+                        <strong>Age:</strong> {student.age}
+                    </p>
+
+                    <p>
+                        <strong>Department:</strong> {student.department}
+                    </p>
+
+                    <button onClick={() => handleEdit(student)}>
+                        Edit
+                    </button>
 
                     <button
                         onClick={() => handleDelete(student.id)}

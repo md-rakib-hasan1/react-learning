@@ -9,8 +9,8 @@ interface User {
 const UserList = () => {
     const [users, setUsers] = useState<User[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
-
     const [error, setError] = useState<string>("");
+    const[search, setSearch]=useState<string>("");
 
     useEffect(() => {
         fetch("https://jsonplaceholder.typicode.com/users")
@@ -33,17 +33,27 @@ const UserList = () => {
     //Loading
     if (loading) {
         return <h2>Loading...</h2>;
-    }
+    };
 
     //Error
     if (error) {
         return <h2>{error}</h2>
-    }
+    };
+
+    const filteredUsers=users.filter((user)=>{
+       return user.name.toLowerCase().includes(search.toLowerCase()) || user.email.toLowerCase().includes(search.toLowerCase())
+    });
     return (
         <div>
             <h2>User List</h2>
+            <input
+             type="text"
+             placeholder='Search user...'
+             value={search}
+             onChange={(e)=>setSearch(e.target.value)}
+             />
 
-            {users.map((user) => (
+            {filteredUsers.map((user) => (
                 <div key={user.id}>
                     <h3>{user.name}</h3>
                     <p>Email: {user.email}</p>

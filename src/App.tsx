@@ -11,6 +11,7 @@ import EventHandling from "./components/EventHandling";
 import Event from "./components/Event";
 import StudentForm from "./components/StudentForm";
 import UseEffectDemo from "./components/UseEffectDemo";
+import UseEffectDemo1 from "./components/UseEffectDemo1";
 function App() {
   const[name, setName]=useState<string>("Rakib");
   const[isLoggedIn, setIsLoggedIn]=useState<boolean>(false);
@@ -68,6 +69,7 @@ function App() {
    <Event/>
    <StudentForm/>
    <UseEffectDemo/>
+   <UseEffectDemo1/>
     </div>
   );
 }

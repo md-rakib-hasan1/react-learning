@@ -1,5 +1,6 @@
 import { useState, type SubmitEvent } from 'react';
 interface Student {
+    id: number;
     name: string;
     age: number;
     department: string;
@@ -18,29 +19,44 @@ const StudentForm = () => {
         e.preventDefault();
 
         if (
-            name.trim() === "" ||
-            age.trim() === "" ||
-            department.trim() === ""
+            name.trim() === ""
+
         ) {
-            setError("All fields are required");
+            setError("Name is required");
+            return;
+        }
+
+        if (age.trim() === ""
+        ) {
+            setError("Age is required");
+            return;
+        }
+
+
+        if (department.trim() === "") {
+            setError("Department is required")
             return;
         }
 
         setError("");
 
         const newStudent: Student = {
-            name: name,
+            id: Date.now(),
+            name: name.trim(),
             age: Number(age),
             department: department,
         };
         setStudents([...students, newStudent]);
-        console.log(newStudent);
         setName('');
         setAge('');
         setDepartment('');
     };
 
-
+    const handleDelete = (id: number) => {
+        setStudents(
+            students.filter((student) => student.id !== id)
+        );
+    };
 
 
     return (
@@ -68,19 +84,22 @@ const StudentForm = () => {
                 <button type='submit'>Submit</button>
             </form>
             {error && <p>{error}</p>}
-            {students.map((student, index) => (
-                <div key={index}>
+
+            {students.map((student) => (
+                <div key={student.id}>
                     <p>Name: {student.name}</p>
                     <p>Age: {student.age}</p>
                     <p>Department: {student.department}</p>
-                    <hr />
 
+                    <button
+                        onClick={() => handleDelete(student.id)}
+                    >Delete</button>
+                    <hr />
                 </div>
             )
 
-            )}
-
-
+            )
+            }
         </div>
     );
 };

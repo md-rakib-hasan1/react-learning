@@ -1,3 +1,4 @@
+
 import Welcome from "./components/Welcome";
 import Profile from "./components/Profile";
 import New from "./components/New";
@@ -12,7 +13,9 @@ import Event from "./components/Event";
 import StudentForm from "./components/StudentForm";
 import UseEffectDemo from "./components/UseEffectDemo";
 import UseEffectDemo1 from "./components/UseEffectDemo1";
+import CleanupDemo from "./components/CleanupDemo";
 function App() {
+  const [show, setShow] = useState(true);
   const[name, setName]=useState<string>("Rakib");
   const[isLoggedIn, setIsLoggedIn]=useState<boolean>(false);
   return (
@@ -61,6 +64,8 @@ function App() {
    <button onClick={()=>setIsLoggedIn(!isLoggedIn)}>
     Login/Logout
    </button>
+
+
    <Counter/>
    <StudentList/>
    <NewStudentList/>
@@ -70,6 +75,12 @@ function App() {
    <StudentForm/>
    <UseEffectDemo/>
    <UseEffectDemo1/>
+   {show && <CleanupDemo />}
+<button onClick={() => setShow(!show)}>
+        Show / Hide
+      </button>
+
+    
     </div>
   );
 }
